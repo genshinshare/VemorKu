@@ -32,7 +32,19 @@ class NewPasswordController extends Controller
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::min(8)->letters()
+                                                                          ->mixedCase()
+                                                                          ->numbers()
+                                                                          ->symbols()]]
+        ,[
+            'required' => 'Harap isi kolom ini',
+            'confirmed' => 'Harap isi kolom ini',
+            'password.min' => 'Harap password setidaknya berisikan 8 karakter',
+            'password.letters' => 'Password harus berisikan setidaknya satu huruf',
+            'password.mixedCase' => 'Password harus berisikan huruf kapital dan huruf biasa',
+            'password.numbers' => 'Password harus berisikan setidaknya satu angka',
+            'password.symbols' => 'Password harus berisikan setidaknya satu simbol',
+            'password.uncompromised' => 'Password terlalu mudah, silahkan ganti password Anda'
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

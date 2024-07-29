@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.8",
         "mckenziearts/laravel-notify": "^2.4",
         "nesbot/carbon": "^2.72",
+        "yaza/laravel-google-drive-storage": "^3.0",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {

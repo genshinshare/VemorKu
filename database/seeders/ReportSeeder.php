@@ -9,8 +9,8 @@ use Illuminate\Database\Seeder;
 class ReportSeeder extends Seeder
 {
     public function run()
-    {
-        $users = User::where('role', 'operator')->inRandomOrder()->first(); //random user dengan role operator
+    {   //random user dengan role operator
+        $users = User::where('role', 'operator')->inRandomOrder()->first(); 
         
         Report::create([
             'users_id' => $users->id,

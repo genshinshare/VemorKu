@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use App\Models\PersonalAccessToken;
 
@@ -105,13 +106,24 @@ class UserAPIController extends Controller
             $validator = Validator::make($request->all(),[
                 'name' => 'required|string',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:8',
-                'confirm_password' => 'required|string|min:8',
+                'password' => ['required', 'confirmed', Password::min(8), 
+                Password::min(8)->letters(),  Password::min(8)->mixedCase(),  
+                Password::min(8)->numbers(),  Password::min(8)->symbols(), 
+                Password::min(8)->uncompromised()],
+                'confirm_password' => ['required', 'confirmed', Password::min(8), 
+                Password::min(8)->letters(),  Password::min(8)->mixedCase(),  
+                Password::min(8)->numbers(),  Password::min(8)->symbols(), 
+                Password::min(8)->uncompromised()],
             ], [
                 'required' => 'Kolom :attribute harus diisi',
                 'min' => 'Kolom :attribute minimal 8 karakter',
                 'email' => ':attribute tidak valid',
-                'email.unique' => 'Tidak dapat mendaftarkan email ini'
+                'email.unique' => 'Tidak dapat mendaftarkan email ini',
+                'password.letters' => 'Password harus berisikan setidaknya satu huruf',
+                'password.mixedCase' => 'Password harus berisikan huruf kapital dan huruf biasa',
+                'password.numbers' => 'Password harus berisikan setidaknya satu angka',
+                'password.symbols' => 'Password harus berisikan setidaknya satu simbol',
+                'password.uncompromised' => 'Password terlalu mudah, silahkan ganti password Anda'
             ]);
 
             if ($validator->fails()) {
@@ -197,12 +209,20 @@ class UserAPIController extends Controller
                     'email',
                     Rule::unique('users', 'email')->ignore($id),
                 ],
-                'password' => 'nullable|string|min:8',
+                'password' => ['required', 'confirmed', Password::min(8), 
+                Password::min(8)->letters(),  Password::min(8)->mixedCase(),  
+                Password::min(8)->numbers(),  Password::min(8)->symbols(), 
+                Password::min(8)->uncompromised()],
             ], [
-                'required' => 'Kolom :attribute harus diisi',
-                'min' => 'Kolom :attribute minimal 8 karakter',
-                'email' => ':attribute tidak valid',
-                'email.unique' => 'Tidak dapat mendaftarkan email ini'
+                'required' => 'Kolom ini harus diisi',
+                'email' => 'Email tidak valid',
+                'email.unique' => 'Tidak dapat mendaftarkan email ini',
+                'password.min' => 'Harap password setidaknya berisikan 8 karakter',
+                'password.letters' => 'Password harus berisikan setidaknya satu huruf',
+                'password.mixedCase' => 'Password harus berisikan huruf kapital dan huruf biasa',
+                'password.numbers' => 'Password harus berisikan setidaknya satu angka',
+                'password.symbols' => 'Password harus berisikan setidaknya satu simbol',
+                'password.uncompromised' => 'Password terlalu mudah, silahkan ganti password Anda'
             ]);
         
             if ($validator->fails()) {
