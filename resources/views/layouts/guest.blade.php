@@ -11,8 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <link rel="shortcut icon" href="{{ public('logo-tab.png') }}" type="image/x-icon">
-        <link rel="icon" href="{{ public('logo-tab.png') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="/logo-tab.png" type="image/x-icon">
+        <link rel="icon" href="/logo-tab.png" type="image/x-icon">
         <!-- Scripts -->
         @php
             $isProduction = app()->environment('production');
@@ -42,7 +42,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div>
                 <a href="/">
-                    <img class="w-full h-20 fill-current text-gray-500" src="{{ asset('logo-brand.png') }}" alt="Logo Altrak1978">
+                    <img class="w-full h-20 fill-current text-gray-500" src="/logo-brand.png" alt="Logo Altrak1978">
                 </a>
             </div>
 
