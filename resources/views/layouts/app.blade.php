@@ -6,8 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <title>{{ config('app.name') }}</title>
-        <link rel="shortcut icon" href="{{ asset('logo-tab.png') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('logo-tab.png') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ public('logo-tab.png') }}" type="image/x-icon">
+        <link rel="icon" href="{{ public('logo-tab.png') }}" type="image/x-icon">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />

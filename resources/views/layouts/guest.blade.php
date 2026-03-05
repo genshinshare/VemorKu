@@ -11,8 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <link rel="shortcut icon" href="{{ asset('logo-tab.png') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('logo-tab.png') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ public('logo-tab.png') }}" type="image/x-icon">
+        <link rel="icon" href="{{ public('logo-tab.png') }}" type="image/x-icon">
         <!-- Scripts -->
         @php
             $isProduction = app()->environment('production');
