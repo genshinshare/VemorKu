@@ -10,6 +10,7 @@ export default {
         "./node_modules/flowbite/**/*.js",
     ],
 
+    safelist:[],
     theme: {
         extend: {
             fontFamily: {
