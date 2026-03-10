@@ -194,7 +194,7 @@
                                     </td>
                                     @if ($rf['report_id'] != NULL)
                                         <td class="px-6 py-4 border rounded p-1 hover:font-bold underline border rounded p-1 text-center">
-                                            <a href="http://localhost:8000/laporan/cari?vehicleID={{$rf['vehicle_id']}}&kategori=report_id&cari_laporan={{$rf['report_id']}}" target="_blank">{{$rf['report_id']}}</a>
+                                            <a href="{{ config('app.url') }}/laporan/cari?vehicleID={{ $rf['vehicle_id'] }}&kategori=report_id&cari_laporan={{ $rf['report_id'] }}" target="_blank">{{$rf['report_id']}}</a>
                                         </td>
                                     @else
                                         <td class="px-6 py-4 border rounded p-1 text-center">
