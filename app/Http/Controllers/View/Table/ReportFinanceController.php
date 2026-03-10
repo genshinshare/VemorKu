@@ -58,7 +58,7 @@ class ReportFinanceController extends Controller
         $vehicle = Http::withHeaders([
             'Authorization' => 'Bearer ' . $bearerToken,
         ])->get(config('app.url') . "/api/vehicle/all");
-        return view('table.reportfinance.addReportFinance', compact('vehicle'));
+        return view('table.reportFinance.addReportFinance', compact('vehicle'));
     }
     public function store(Request $request)
     {
