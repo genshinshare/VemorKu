@@ -30,14 +30,12 @@ class PageController extends Controller
         $vehicleID = 'all';
         $now = auth()->user();
         $bearerToken = $now->api_token;
-        $report = collect();
 
         // terakhir diperbarui
         $orderBy = 'created_at';
         $report = Http::withHeaders([
             'Authorization' => 'Bearer ' . $bearerToken,
         ])->get(config('app.url') . "/api/report/search?cari_laporan={$cari_laporan}&kategori={$kategori}&vehicleID={$vehicleID}&dashboard=true&orderBy={$orderBy}");
-        dd(config('app.url') . "/api/report/search?cari_laporan={$cari_laporan}&kategori={$kategori}&vehicleID={$vehicleID}&dashboard=true&orderBy={$orderBy}");
         $dateReport = $report['report']['data'][0]['created_at'];
         $dateR = \Carbon\Carbon::parse($dateReport)->setTimezone('Asia/Jakarta')->format('d/m/Y - H:i');
 
