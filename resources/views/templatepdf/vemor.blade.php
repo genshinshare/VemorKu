@@ -74,7 +74,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <img src="Logo-PT_Altrak1978.jpg" alt="logoaltrak" id="logo">
+                <img src="/Logo-PT_Altrak1978.jpg" alt="logoaltrak" id="logo">
             </div>
             <div class="judul">
                 <p>
