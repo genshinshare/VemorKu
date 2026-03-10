@@ -30,6 +30,7 @@ class PageController extends Controller
         $vehicleID = 'all';
         $now = auth()->user();
         $bearerToken = $now->api_token;
+        $report = collect();
 
         // terakhir diperbarui
         $orderBy = 'created_at';
