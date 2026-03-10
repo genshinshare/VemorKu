@@ -154,7 +154,4 @@
             </div>
         </div>
     </div>
-    <script>
-        console.log($report['report']['data'][0]['created_at'])
-    </script>
 </x-app-layout>
