@@ -31,7 +31,7 @@ class PDFController extends Controller
             'vehicle_id.max' => 'Pilih vehicle id yang tersedia di kolom :attribute',
             'month.integer' => 'Pilih bulan yang tersedia di kolom :attribute'
         ]);
-        $imagePath = public_path('Logo-PT_Altrak1978.jpg');
+        $imagePath = base_path('Logo-PT_Altrak1978.jpg');
         $imageData = base64_encode(file_get_contents($imagePath));
         $image = 'data:image/jpeg;base64,' . $imageData;
         $bulan = $request->month;
