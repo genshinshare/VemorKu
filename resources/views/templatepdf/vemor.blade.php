@@ -74,7 +74,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <img src="{{ asset('logo-brand.png') }}" alt="logoaltrak" id="logo">
+                <img src="https://i.pinimg.com/564x/4a/d1/91/4ad191c926118b1d61538932dd47a74b.jpg" alt="logoaltrak" id="logo">
             </div>
             <div class="judul">
                 <p>
