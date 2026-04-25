@@ -98,6 +98,23 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <button id="button-export" type="button" class="flex duration-300 items-center w-full p-2 hover:bg-blue-900 border-2 border-blue-900 hover:text-white text-base rounded-tr-lg rounded-tl-lg" aria-controls="dropdown-sidebar-3" data-collapse-toggle="dropdown-sidebar-3">
+                      <i style="width:30%; height:auto;"class="fa-solid fa-file-pdf fa-lg m-auto text-center"></i>
+                      <span style="width:70%; height:auto;" class="flex-1 whitespace-nowrap m-auto text-start">Sample Upgrade</span>
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                </button>
+                <ul id="dropdown-sidebar-3" class="hidden py-2 space-y-2 bg-gray-200 border-2 border-blue-900 border border-solid border-black rounded-br-lg rounded-bl-lg">
+                    <li>
+                        <a href="{{route('vemor')}}" class="flex items-center p-2 duration-300 border-transparent border-blue-900 hover:text-white rounded-[30px] hover:rounded-none hover:bg-blue-900 focus:bg-blue-600 focus:shadow-xl focus:shadow-inner focus:rounded-none group active:scale-95 focus:text-white">
+                            <i style="width:30%; height:auto;"class="fa-solid fa-file-invoice fa-lg m-auto text-center"></i>
+                            <span style="width:70%; height:auto;" class="flex-1 whitespace-nowrap m-auto text-start"> Import Excel > Database</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
      </div>
   </aside>
@@ -105,9 +122,11 @@
     // Mendapatkan elemen yang ingin dicek
     const dropdownElement = document.getElementById('dropdown-sidebar');
     const dropdownElement2 = document.getElementById('dropdown-sidebar-2');
+    const dropdownElement3 = document.getElementById('dropdown-sidebar-3');
 
     const isDropdownHidden = localStorage.getItem('dropdownStatus');
     const isDropdownHidden2 = localStorage.getItem('dropdownStatus2');
+    const isDropdownHidden2 = localStorage.getItem('dropdownStatus3');
 
     if (isDropdownHidden === "true") {
         dropdownElement.classList.remove("hidden");
@@ -117,11 +136,18 @@
         dropdownElement2.classList.remove("hidden");
     }
 
+    if (isDropdownHidden3 === "true") {
+        dropdownElement3.classList.remove("hidden");
+    }
+
     window.addEventListener('beforeunload', () => {
         const newDropdownStatus = !dropdownElement.classList.contains('hidden');
         localStorage.setItem('dropdownStatus', newDropdownStatus);
 
         const newDropdownStatus2 = !dropdownElement2.classList.contains('hidden');
         localStorage.setItem('dropdownStatus2', newDropdownStatus2);
+
+        const newDropdownStatus3 = !dropdownElement3.classList.contains('hidden');
+        localStorage.setItem('dropdownStatus3', newDropdownStatus3);
     });
 </script>
