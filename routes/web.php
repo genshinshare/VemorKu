@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ImportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\View\PageController;
 use App\Http\Controllers\View\PDF\PDFController;
@@ -11,6 +10,8 @@ use App\Http\Controllers\View\Table\VehicleController;
 use App\Http\Controllers\View\Table\ReportFinanceController;
 use App\Http\Controllers\View\Table\DepartmentController;
 use App\Http\Controllers\View\Table\DriverController;
+
+use App\Http\Controllers\View\ImportController;
 
 /*
 |--------------------------------------------------------------------------
