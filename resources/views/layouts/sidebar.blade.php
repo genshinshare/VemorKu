@@ -110,7 +110,7 @@
                     <li>
                         <a href="{{route('vemor')}}" class="flex items-center p-2 duration-300 border-transparent border-blue-900 hover:text-white rounded-[30px] hover:rounded-none hover:bg-blue-900 focus:bg-blue-600 focus:shadow-xl focus:shadow-inner focus:rounded-none group active:scale-95 focus:text-white">
                             <i style="width:30%; height:auto;"class="fa-solid fa-file-invoice fa-lg m-auto text-center"></i>
-                            <span style="width:70%; height:auto;" class="flex-1 whitespace-nowrap m-auto text-start"> Import Excel > Database</span>
+                            <span style="width:70%; height:auto;" class="flex-1 m-auto text-start"> Import Excel > Database</span>
                         </a>
                     </li>
                 </ul>
