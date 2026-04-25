@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\View\PageController;
 use App\Http\Controllers\View\PDF\PDFController;
@@ -90,6 +91,8 @@ Route::middleware(['auth', 'checkRole:operator,admin'])->group(function () {
     Route::get('/expensetahunan/pdf', [PDFController::class, 'expensetahunanpdf']);
     Route::get('/rasiobbm', [PDFController::class, 'rasiobbm'])->name('rasiobbm');
     Route::get('/rasiobbm/pdf', [PDFController::class, 'rasiobbmpdf'])->name('rasiobbmpdf');
+
+    Route::get('/import-excel-database', [ImportController::class, 'index'])->name('import');
 });
 
 Route::middleware('auth')->group(function () {
