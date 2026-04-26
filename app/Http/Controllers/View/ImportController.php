@@ -28,7 +28,7 @@ class ImportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

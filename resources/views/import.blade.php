@@ -4,17 +4,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex">
-                        <a href="/import-excel-database" class="text-4xl font-bold text-gray-900 m-auto text-center">
+                        <a href="/import" class="text-4xl font-bold text-gray-900 m-auto text-center">
                             <h2>Import Excel ke Database</h2>
                         </a>
                     </div>
                     <hr class="h-1 bg-gray-100 rounded md:my-3">
-                    <form action="/import/upload" method="GET" class="max-w-lg mx-auto">
+                    <form action="/import/store" method="POST" enctype="multipart/form-data" class="max-w-lg mx-auto">
                         @csrf
                         <div class="mb-6">
                             <label for="Upload-Excel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Excel <i class="fa-solid fa-asterisk fa-sm" style="color: #e02424;"></i></label>
                             <input class="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-body" id="file_input" type="file" accept=".xlsx,.xls,.csv" required>
-                            @error('year')
+                            @error('Upload-Excel')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-small">{{ $message }}</span></p>
                             @enderror
                         </div>
