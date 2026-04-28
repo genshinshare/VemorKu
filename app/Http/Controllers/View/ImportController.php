@@ -4,6 +4,8 @@ namespace App\Http\Controllers\View;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportDataExcel;
 
 class ImportController extends Controller
 {
@@ -28,7 +30,20 @@ class ImportController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'file_input' => 'required|file|mimes:xlsx,xls,csv|max:2048'
+        ], [
+            'required' => 'Kolom :attribute harus diisi.',
+            'file' => 'Kolom :attribute harus berupa file.',
+            'file_input.mimes' => 'Kolom :attribute hanya menerima Excel (xlsx, xls, atau csv).',
+            'file_input.max' => 'Size terlalu besar. Max 2048 MB.'
+        ]);
+        try {
+        Excel::import(new ImportDataExcel, $request->file('file'));
+            return back()->with('success', 'Data berhasil diimport!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan saat import!');
+        }
     }
 
     /**
