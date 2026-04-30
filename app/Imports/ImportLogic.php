@@ -20,10 +20,10 @@ class ImportLogic implements ToCollection, WithStartRow
 
     public function collection(Collection $rows)
     {
+        dd($rows->first());
         DB::transaction(function () use ($rows) {
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
-                dd($rows->first());
                 if (empty(trim($row[0]))) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
                     break;
                 } 
