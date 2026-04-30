@@ -38,8 +38,9 @@ class ImportController extends Controller
             'file_input.mimes' => 'Kolom :attribute hanya menerima Excel (xlsx, xls, atau csv).',
             'file_input.max' => 'Size terlalu besar. Max 2 MB.'
         ]);
+        $file = $request->file('file_input');
         try {
-        Excel::import(new ImportDataExcel, $request->file('file_input'));
+            Excel::import(new ImportDataExcel($file->getRealPath()),$file);
             return back()->with('success', 'Data berhasil diimport!');
         } catch (\Exception $e) {
             dd($e->getMessage());

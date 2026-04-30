@@ -3,18 +3,28 @@
 namespace App\Imports;
 
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
-use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Imports\ImportLogic;
 
-class ImportDataExcel implements WithMultipleSheets, SkipsUnknownSheets
+class ImportDataExcel implements WithMultipleSheets
 {
-    public function sheets(): array
+    protected string $filePath;
+
+    public function __construct(string $filePath)
     {
-        return []; // kosongin
+        $this->filePath = $filePath;
     }
 
-    public function onUnknownSheet($sheetName)
+    public function sheets(): array
     {
-        return new ImportLogic();
+        $spreadsheet = IOFactory::load($this->filePath);
+
+        $sheets = [];
+
+        foreach ($spreadsheet->getSheetNames() as $index => $name) {
+            $sheets[$index] = new ImportLogic();
+        }
+
+        return $sheets;
     }
 }
