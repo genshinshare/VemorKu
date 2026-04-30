@@ -54,7 +54,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                             'users_id' => $now,
                             'vehicle_id' => $vehicleId,
                             'date_of_application' => $date,
-                            'date_of_recorded' => '2023-02-01', // butuh diperbarui kode nya, sesuaikan dengan tanggal 1 dari bulan laporan ini
+                            'date_recorded' => '2023-02-01', // butuh diperbarui kode nya, sesuaikan dengan tanggal 1 dari bulan laporan ini
                             'fuel' => $row[4],
                             'fuel_cost' => $row[5],
                             'maintenance_cost' => $row[6],
