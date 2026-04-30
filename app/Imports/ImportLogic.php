@@ -43,29 +43,43 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                     }
                     $now = auth()->user()->id;
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
-                        $report = Report::create([
-                            'users_id' => $now,
-                            'vehicle_id' => $vehicleId,
-                            'departure_date' => $date,
-                            'departure_time' => '00:00:00', // butuh diperbarui kode nya, sesuaikan dengan Import Car Condition
-                            'km_before' => $row[1],
-                            'km_after' => $row[2],
-                            'fuel' => $row[4],
-                            'fuel_cost' => $row[5],
-                            'remark' => $row[9]
-                        ]);
+                        if ($lastKmBefore == $row[1] && $lastKmAfter == $row[2]){
+                            continue;
+                        }
+                        else {
+                            $report = Report::create([
+                                'users_id' => $now,
+                                'vehicle_id' => $vehicleId,
+                                'departure_date' => $date,
+                                'departure_time' => '00:00:00', // butuh diperbarui kode nya, sesuaikan dengan Import Car Condition
+                                'km_before' => $row[1],
+                                'km_after' => $row[2],
+                                'fuel' => $row[4],
+                                'fuel_cost' => $row[5],
+                                'remark' => $row[9]
+                            ]);
+                            $lastKmBefore = $row[1];
+                            $lastKmAfter = $row[2];
+                        }
                     } else if (empty($row[1]) && empty($row[2])) { // tidak ada km berarti laporan klaim
-                        $report_finance = ReportFinance::create([
-                            'users_id' => $now,
-                            'vehicle_id' => $vehicleId,
-                            'date_of_application' => $date,
-                            'date_recorded' => '2023-02-01', // butuh diperbarui kode nya, sesuaikan dengan tanggal 1 dari bulan laporan ini
-                            'fuel' => $row[4],
-                            'fuel_cost' => $row[5],
-                            'maintenance_cost' => $row[6],
-                            'other_cost' => $row[8],
-                            'remark' => $row[9]
-                        ]);
+                        if ($lastMaintenanceCost == $row[6] && $lastRemark == $row[9]){
+                            continue;
+                        }
+                        else {
+                            $report_finance = ReportFinance::create([
+                                'users_id' => $now,
+                                'vehicle_id' => $vehicleId,
+                                'date_of_application' => $date,
+                                'date_recorded' => '2023-02-01', // butuh diperbarui kode nya, sesuaikan dengan tanggal 1 dari bulan laporan ini
+                                'fuel' => $row[4],
+                                'fuel_cost' => $row[5],
+                                'maintenance_cost' => $row[6],
+                                'other_cost' => $row[8],
+                                'remark' => $row[9]
+                            ]);
+                            $lastMaintenanceCost = $row[6];
+                            $lastRemark = $row[9];
+                        }
                     }
                 }
             }
