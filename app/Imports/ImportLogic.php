@@ -8,15 +8,14 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
-use Maatwebsite\Excel\Concerns\WithTitle;
 
-class ImportLogic implements ToCollection, WithStartRow, WithTitle
+class ImportLogic implements ToCollection, WithStartRow
 {
     protected $sheetName;
 
-    public function title(): string
+    public function __construct($sheetName = null)
     {
-        return $this->sheetName;
+        $this->sheetName = $sheetName;
     }
 
     public function collection(Collection $rows)
