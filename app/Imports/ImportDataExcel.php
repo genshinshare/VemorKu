@@ -2,13 +2,18 @@
 
 namespace App\Imports;
 
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use App\Imports\ImportLogic;
 
-class ImportDataExcel implements ToCollection
+class ImportDataExcel implements WithMultipleSheets
 {
-    public function collection(Collection $rows)
+    public function sheets(): array
     {
-        dd($rows);
+        return [];
+    }
+
+    public function onUnknownSheet($sheetName)
+    {
+        return new ImportLogic($sheetName);
     }
 }

@@ -8,8 +8,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
-class ImportLogic implements ToCollection, WithStartRow
+class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas
 {
     protected $sheetName;
 
@@ -23,10 +25,11 @@ class ImportLogic implements ToCollection, WithStartRow
         DB::transaction(function () use ($rows) {
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
-                if (empty(trim($row[0]))) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
+                if (empty($row[0])) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
                     break;
-                } 
+                }
                 else {
+                    $date = Date::excelToDateTimeObject($row[0])->format('Y-m-d');
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         $report = Report::create([
                             'vehicle_id' => $vehicleId,
