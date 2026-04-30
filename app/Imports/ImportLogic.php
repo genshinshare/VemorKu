@@ -20,7 +20,6 @@ class ImportLogic implements ToCollection, WithStartRow
 
     public function collection(Collection $rows)
     {
-        dd($rows->first());
         DB::transaction(function () use ($rows) {
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
