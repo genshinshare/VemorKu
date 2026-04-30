@@ -39,7 +39,7 @@ class ImportController extends Controller
             'file_input.max' => 'Size terlalu besar. Max 2048 MB.'
         ]);
         try {
-        Excel::import(new ImportDataExcel, $request->file('file'));
+        Excel::import(new ImportDataExcel, $request->file('file_input'));
             return back()->with('success', 'Data berhasil diimport!');
         } catch (\Exception $e) {
             return back()->with('error', 'Terjadi kesalahan saat import!');

@@ -25,7 +25,6 @@ class ImportLogic implements ToCollection, WithStartRow
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
                 if (empty(trim($row[0]))) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
-                dd('Dah gada lagi');
                     break;
                 } 
                 else {
