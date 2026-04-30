@@ -26,7 +26,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
                 if (empty($row[0])) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
-                    break;
+                    continue;
                 }
                 else {
                     $date = Date::excelToDateTimeObject($row[0])->format('Y-m-d');
