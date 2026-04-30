@@ -36,8 +36,10 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                 }
                 else {
                     $date = Date::excelToDateTimeObject($row[0])->format('Y-m-d');
+                    $now = auth()->user()->id;
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         $report = Report::create([
+                            'users_id' => $now,
                             'vehicle_id' => $vehicleId,
                             'departure_date' => $date,
                             'km_before' => $row[1],
@@ -48,6 +50,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                         ]);
                     } else if (empty($row[1]) && empty($row[2])) { // tidak ada km berarti laporan klaim
                         $report_finance = ReportFinance::create([
+                            'users_id' => $now,
                             'vehicle_id' => $vehicleId,
                             'date_of_application' => $date,
                             'fuel' => $row[4],
