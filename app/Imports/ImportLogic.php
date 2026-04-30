@@ -15,7 +15,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas
 {
     protected $sheetName;
 
-    public function __construct($sheetName = null)
+    public function __construct($sheetName)
     {
         $this->sheetName = $sheetName;
     }
