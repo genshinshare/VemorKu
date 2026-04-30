@@ -19,7 +19,6 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
 
     public function registerEvents(): array
     {
-        dd('masuk');
         return [
             BeforeSheet::class => function ($event) {
                 $this->sheetName = $event->getSheet()->getTitle();
