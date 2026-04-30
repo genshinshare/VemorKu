@@ -33,7 +33,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
                 if (empty($row[0])) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
-                    continue;
+                    break;
                 }
                 else {
                     if (is_numeric($row[0])) {
