@@ -94,7 +94,7 @@ Route::middleware(['auth', 'checkRole:operator,admin'])->group(function () {
     Route::get('/rasiobbm/pdf', [PDFController::class, 'rasiobbmpdf'])->name('rasiobbmpdf');
 
     Route::get('/import', [ImportController::class, 'index'])->name('import');
-    Route::get('/import/store', [ImportController::class, 'store'])->name('storeImport');
+    Route::post('/import/store', [ImportController::class, 'store'])->name('storeImport');
 });
 
 Route::middleware('auth')->group(function () {
