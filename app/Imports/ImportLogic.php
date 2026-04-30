@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Report;
 use App\Models\ReportFinance;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -35,7 +36,11 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                     continue;
                 }
                 else {
-                    $date = Date::excelToDateTimeObject($row[0])->format('Y-m-d');
+                    if (is_numeric($row[0])) {
+                        $date = Date::excelToDateTimeObject($row[0])->format('Y-m-d');
+                    } else {
+                        $date = Carbon::parse($row[0])->format('Y-m-d');
+                    }
                     $now = auth()->user()->id;
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         $report = Report::create([
