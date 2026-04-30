@@ -36,11 +36,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                     break; // stop loop, bukan skip
                 }
                 else {
-                    if (is_numeric($row[0])) {
-                        $date = Date::excelToDateTimeObject($row[0])->format('Y-m-d');
-                    } else {
-                        $date = Carbon::parse($row[0])->format('Y-m-d');
-                    }
+                    $date = Carbon::parse($row[0])->format('Y-m-d');
                     $now = auth()->user()->id;
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         if ($lastKmBefore == $row[1] && $lastKmAfter == $row[2]){
