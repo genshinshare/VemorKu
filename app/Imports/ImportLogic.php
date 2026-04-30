@@ -4,19 +4,19 @@ namespace App\Imports;
 
 use App\Models\Report;
 use App\Models\ReportFinance;
-use Google\Service\CloudControlsPartnerService\Console;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithTitle;
 
-class ImportLogic implements ToCollection, WithStartRow
+class ImportLogic implements ToCollection, WithStartRow, WithTitle
 {
     protected $sheetName;
 
-    public function __construct($sheetName = null)
+    public function title(): string
     {
-        $this->sheetName = $sheetName;
+        return $this->sheetName;
     }
 
     public function collection(Collection $rows)
@@ -31,7 +31,7 @@ class ImportLogic implements ToCollection, WithStartRow
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         $report = Report::create([
                             'vehicle_id' => $vehicleId,
-                            'deparutre_date' => $row[0],
+                            'departure_date' => $row[0],
                             'km_before' => $row[1],
                             'km_after' => $row[2],
                             'fuel' => $row[4],

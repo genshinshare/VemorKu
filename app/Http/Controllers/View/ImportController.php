@@ -36,7 +36,7 @@ class ImportController extends Controller
             'required' => 'Kolom :attribute harus diisi.',
             'file' => 'Kolom :attribute harus berupa file.',
             'file_input.mimes' => 'Kolom :attribute hanya menerima Excel (xlsx, xls, atau csv).',
-            'file_input.max' => 'Size terlalu besar. Max 2048 MB.'
+            'file_input.max' => 'Size terlalu besar. Max 2 MB.'
         ]);
         try {
         Excel::import(new ImportDataExcel, $request->file('file_input'));
