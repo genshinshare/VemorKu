@@ -10,14 +10,20 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\BeforeSheet;
 
-class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas
+class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas, WithEvents
 {
     protected $sheetName;
 
-    public function __construct($sheetName)
+    public function registerEvents(): array
     {
-        $this->sheetName = $sheetName;
+        return [
+            BeforeSheet::class => function ($event) {
+                $this->sheetName = $event->getSheet()->getTitle();
+            },
+        ];
     }
 
     public function collection(Collection $rows)
