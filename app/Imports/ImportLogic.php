@@ -74,6 +74,6 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
 
     public function startRow(): int // dimulai dari baris 12
     {
-        return 12;
+        return 13;
     }
 }
