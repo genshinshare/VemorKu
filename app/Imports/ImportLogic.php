@@ -38,6 +38,10 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                 else {
                     $date = Carbon::parse($row[0])->format('Y-m-d');
                     $now = auth()->user()->id;
+                    $lastKmBefore = null;
+                    $lastKmAfter = null;
+                    $lastMaintenanceCost = null;
+                    $lastRemark = null;
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         if ($lastKmBefore == $row[1] && $lastKmAfter == $row[2]){
                             continue;
