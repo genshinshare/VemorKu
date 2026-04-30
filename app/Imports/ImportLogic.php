@@ -33,7 +33,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
                         $report = Report::create([
                             'vehicle_id' => $vehicleId,
-                            'departure_date' => $row[0],
+                            'departure_date' => $date,
                             'km_before' => $row[1],
                             'km_after' => $row[2],
                             'fuel' => $row[4],
@@ -43,7 +43,7 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas
                     } else if (empty($row[1]) && empty($row[2])) { // tidak ada km berarti laporan klaim
                         $report_finance = ReportFinance::create([
                             'vehicle_id' => $vehicleId,
-                            'date_of_application' => $row[0],
+                            'date_of_application' => $date,
                             'fuel' => $row[4],
                             'fuel_cost' => $row[5],
                             'maintenance_cost' => $row[6],
