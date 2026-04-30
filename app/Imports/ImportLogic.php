@@ -38,55 +38,37 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
                 else {
                     $date = Carbon::parse($row[0])->format('Y-m-d');
                     $now = auth()->user()->id;
-                    $lastKmBefore = null;
-                    $lastKmAfter = null;
-                    $lastMaintenanceCost = null;
-                    $lastRemark = null;
                     if (!empty($row[1]) && !empty($row[2])) { // menentukan apakah ada tercatat km
-                        if ($lastKmBefore == $row[1] && $lastKmAfter == $row[2]){
-                            continue;
-                        }
-                        else {
-                            $report = Report::create([
-                                'users_id' => $now,
-                                'vehicle_id' => $vehicleId,
-                                'departure_date' => $date,
-                                'departure_time' => '00:00:00', // butuh diperbarui kode nya, sesuaikan dengan Import Car Condition
-                                'km_before' => $row[1],
-                                'km_after' => $row[2],
-                                'fuel' => $row[4],
-                                'fuel_cost' => $row[5],
-                                'remark' => $row[9]
-                            ]);
-                            $lastKmBefore = $row[1];
-                            $lastKmAfter = $row[2];
-                        }
+                        $report = Report::create([
+                            'users_id' => $now,
+                            'vehicle_id' => $vehicleId,
+                            'departure_date' => $date,
+                            'departure_time' => '00:00:00', // butuh diperbarui kode nya, sesuaikan dengan Import Car Condition
+                            'km_before' => $row[1],
+                            'km_after' => $row[2],
+                            'fuel' => $row[4],
+                            'fuel_cost' => $row[5],
+                            'remark' => $row[9]
+                        ]);
                     } else if (empty($row[1]) && empty($row[2])) { // tidak ada km berarti laporan klaim
-                        if ($lastMaintenanceCost == $row[6] && $lastRemark == $row[9]){
-                            continue;
-                        }
-                        else {
-                            $report_finance = ReportFinance::create([
-                                'users_id' => $now,
-                                'vehicle_id' => $vehicleId,
-                                'date_of_application' => $date,
-                                'date_recorded' => '2023-02-01', // butuh diperbarui kode nya, sesuaikan dengan tanggal 1 dari bulan laporan ini
-                                'fuel' => $row[4],
-                                'fuel_cost' => $row[5],
-                                'maintenance_cost' => $row[6],
-                                'other_cost' => $row[8],
-                                'remark' => $row[9]
-                            ]);
-                            $lastMaintenanceCost = $row[6];
-                            $lastRemark = $row[9];
-                        }
+                        $report_finance = ReportFinance::create([
+                            'users_id' => $now,
+                            'vehicle_id' => $vehicleId,
+                            'date_of_application' => $date,
+                            'date_recorded' => '2023-02-01', // butuh diperbarui kode nya, sesuaikan dengan tanggal 1 dari bulan laporan ini
+                            'fuel' => $row[4],
+                            'fuel_cost' => $row[5],
+                            'maintenance_cost' => $row[6],
+                            'other_cost' => $row[8],
+                            'remark' => $row[9]
+                        ]);
                     }
                 }
             }
         });
     }
 
-    public function startRow(): int // dimulai dari baris 12
+    public function startRow(): int // dimulai dari baris 13, startRow 1-based bukan 0-based
     {
         return 13;
     }
