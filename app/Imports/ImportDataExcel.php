@@ -9,11 +9,8 @@ class ImportDataExcel implements WithMultipleSheets
 {
     public function sheets(): array
     {
-        return [];
-    }
-
-    public function onUnknownSheet($sheetName)
-    {
-        return new ImportLogic($sheetName);
+        return [
+            '*' => new ImportLogic()
+        ];
     }
 }
