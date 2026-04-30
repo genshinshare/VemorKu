@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Report;
 use App\Models\ReportFinance;
+use Google\Service\CloudControlsPartnerService\Console;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -24,6 +25,7 @@ class ImportLogic implements ToCollection, WithStartRow
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
                 if (empty(trim($row[0]))) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
+                dd('Dah gada lagi');
                     break;
                 } 
                 else {
