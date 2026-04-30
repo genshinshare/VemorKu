@@ -32,8 +32,8 @@ class ImportLogic implements ToCollection, WithStartRow, WithCalculatedFormulas,
         DB::transaction(function () use ($rows) {
             $vehicleId = strtoupper(str_replace(' ', '', $this->sheetName));
             foreach($rows as $row) {
-                if (empty($row[0])) { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
-                    break;
+                if (!isset($row[0]) || trim($row[0]) === '') { // jika tidak terdapat data (biasanya mobil stdby atau tidak digunakan lagi)
+                    break; // stop loop, bukan skip
                 }
                 else {
                     if (is_numeric($row[0])) {
